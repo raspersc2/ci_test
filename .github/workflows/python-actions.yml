@@ -1,0 +1,40 @@
+name: Python actions
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  run_test_bots:
+    name: Run test bots
+
+    # for this purpose, test games can only be run with the headless Sc2 Linux client.
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: true  # one failure is enough
+      matrix:
+        python-version: [3.7]
+        player1: [bio, bc, 4gate, lurker, mutalisk, saferaven, disruptor]
+        player2: [ai.zerg.hard.macro]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+#    - name: Print directories and files
+#      run: |
+#        sudo apt-get install tree
+#        tree
+    - name: Load and build docker image
+      run: |
+        docker build -t aiarena .
+    - name: Run bots
+      run: |
+        docker run -it --entrypoint /bin/bash -v .\config.py:/root/aiarena-client/config.py -v .matches:/root/aiarena-client/matches -v .\bots:/root/aiarena-client/bots -v .\maps:/root/StarCraftII/maps aiarena
