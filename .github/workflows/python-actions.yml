@@ -16,13 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
-    strategy:
-      fail-fast: true  # one failure is enough
-      matrix:
-        python-version: [3.7]
-        player1: [bio]
-        player2: [ai.zerg.hard.macro]
-
     steps:
     - uses: actions/checkout@v2
       with:
@@ -39,5 +32,6 @@ jobs:
       uses: jwalton/gh-docker-logs@v2.0.0
     - name: Run bots
       run: |
-        docker run -it --entrypoint /bin/bash -v .\config.py:/root/aiarena-client/config.py -v .matches:/root/aiarena-client/matches -v .\bots:/root/aiarena-client/bots -v .\maps:/root/StarCraftII/maps aiarena
-        python -m arenaclient
+        docker run --interactive --tty --detach --name app1 -v .\config.py:/root/aiarena-client/config.py -v .matches:/root/aiarena-client/matches -v .\bots:/root/aiarena-client/bots -v .\maps:/root/StarCraftII/maps aiarena
+        docker exec -i app1 bash -c "python -m arenaclient"
+        docker rm -f app1
