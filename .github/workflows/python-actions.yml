@@ -35,6 +35,9 @@ jobs:
     - name: Load and build docker image
       run: |
         docker build -t aiarena .
+    - name: Collect Docker Logs
+      uses: jwalton/gh-docker-logs@v2.0.0
     - name: Run bots
       run: |
         docker run -it --entrypoint /bin/bash -v .\config.py:/root/aiarena-client/config.py -v .matches:/root/aiarena-client/matches -v .\bots:/root/aiarena-client/bots -v .\maps:/root/StarCraftII/maps aiarena
+        python -m arenaclient
