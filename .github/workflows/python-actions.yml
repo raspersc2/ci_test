@@ -34,7 +34,7 @@ jobs:
 #        tree
     - name: Load and build docker image
       run: |
-        docker build -t aiarena .
+        docker build -t test_image -f .github/workflows/Dockerfile .
     - name: Collect Docker Logs
       uses: jwalton/gh-docker-logs@v2.0.0
     - name: Run bots
