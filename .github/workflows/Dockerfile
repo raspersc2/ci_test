@@ -9,7 +9,7 @@ RUN ln -s /root/StarCraftII/Maps /root/StarCraftII/maps && rm -Rf /root/StarCraf
 
 # Download python requirements files
 RUN wget https://github.com/aiarena/aiarena-client/raw/master/requirements.txt -O client-requirements.txt
-COPY requirements.txt bot-requirements.txt
+RUN wget https://raw.githubusercontent.com/raspersc2/ci_test/master/.github/workflows/requirements.txt -O bot-requirements.txt
 
 # Install python modules
 # Download the aiarena client
