@@ -20,12 +20,6 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: recursive
-      # In this step, this action saves a list of existing images,
-      # the cache is created without them in the post run.
-      # It also restores the cache if it exists.
-    - uses: satackey/action-docker-layer-caching@v0.0.11
-      # Ignore the failure of a step and avoid terminating the job.
-      continue-on-error: true
 
     - name: Print directories and files
       run: |
@@ -38,6 +32,6 @@ jobs:
       uses: jwalton/gh-docker-logs@v2.0.0
     - name: Run bots
       run: |
-        docker run --interactive --tty --detach --name app1 -v /test/config.py:/root/aiarena-client/config.py -v /test/matches:/root/aiarena-client/matches -v /test/matches:/root/aiarena-client/arenaclient/configs/matches -v /test/bots:/root/aiarena-client/bots -v /test/maps:/root/StarCraftII/maps aiarena
+        docker run --tty --detach --name app1 -v /test/config.py:/root/aiarena-client/config.py -v /test/matches:/root/aiarena-client/arenaclient/configs/matches/matches -v /test/bots:/root/aiarena-client/bots -v /test/maps:/root/StarCraftII/maps aiarena
         docker exec -i app1 bash -c "python -m arenaclient"
         docker rm -f app1
