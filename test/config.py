@@ -39,13 +39,13 @@ BOTS_DIRECTORY = os.path.join(WORKING_DIRECTORY, "bots")
 VISUALIZE = False
 
 MATCH_SOURCE_CONFIG = FileMatchSource.FileMatchSourceConfig(
-    matches_file=os.path.join(WORKING_DIRECTORY, "matches.txt"),
+    matches_file=os.path.join(WORKING_DIRECTORY, "matches"),
     results_file=os.path.join(WORKING_DIRECTORY, "results")
 )
 
 # WEBSITE
 BASE_WEBSITE_URL = "https://ai-arena.net"
-API_MATCHES_URL = parse.urljoin(BASE_WEBSITE_URL, "/api/arenaclient/matches.txt/")
+API_MATCHES_URL = parse.urljoin(BASE_WEBSITE_URL, "/api/arenaclient/matches/")
 API_RESULTS_URL = parse.urljoin(BASE_WEBSITE_URL, "/api/arenaclient/results/")
 
 # STARCRAFT
