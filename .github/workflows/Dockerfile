@@ -4,8 +4,8 @@ FROM aiarena/sc2-linux-base:latest
 MAINTAINER AI Arena <staff@aiarena.net>
 
 # get more memory
-RUN wget https://raw.githubusercontent.com/Cretezy/Swap/master/swap.sh -O swap
-RUN sh swap 4G
+#RUN wget https://raw.githubusercontent.com/Cretezy/Swap/master/swap.sh -O swap
+#RUN sh swap 4G
 
 # Create a symlink for the maps directory
 # Remove the Maps that come with the SC2 client
