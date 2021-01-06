@@ -38,6 +38,6 @@ jobs:
       uses: jwalton/gh-docker-logs@v2.0.0
     - name: Run bots
       run: |
-        docker run --interactive --tty --detach --name app1 -v /test/config.py:/root/aiarena-client/config.py -v /test/matches:/root/aiarena-client/matches -v /test/bots:/root/aiarena-client/bots -v /test/maps:/root/StarCraftII/maps aiarena
+        docker run --interactive --tty --detach --name app1 -v /test/config.py:/root/aiarena-client/config.py -v /test/matches.txt:/root/aiarena-client/matches.txt -v /test/bots:/root/aiarena-client/bots -v /test/maps:/root/StarCraftII/maps aiarena
         docker exec -i app1 bash -c "python -m arenaclient"
         docker rm -f app1
