@@ -24,6 +24,9 @@ jobs:
       run: |
         curl https://raw.githubusercontent.com/Cretezy/Swap/master/swap.sh -o swap
         sh swap 4G
+#    - name: Move bot into directory
+#      run: |
+#        -
     - name: Print directories and files
       run: |
         sudo apt-get install tree
@@ -31,10 +34,11 @@ jobs:
     - name: Load and build docker image
       run: |
         docker build -t aiarena -f .github/workflows/Dockerfile .
-    - name: Collect Docker Logs
-      uses: jwalton/gh-docker-logs@v2.0.0
+
     - name: Run bots
       run: |
         docker run --tty --detach --name app1 -v /test/config.py:/root/aiarena-client/config.py -v /test/matches:/root/aiarena-client/arenaclient/configs/matches/matches -v /test/bots:/root/aiarena-client/bots -v /test/maps:/root/StarCraftII/maps aiarena
         docker exec -i app1 bash -c "python -m arenaclient"
         docker rm -f app1
+    - name: Collect Docker Logs
+      uses: jwalton/gh-docker-logs@v2.0.0
