@@ -1,14 +1,9 @@
-pysc2
-tensorflow==1.14.0
 h5py==2.10.0
 scipy
-opencv-python
-keras==2.3.1
 scikit-learn==0.22.2 # until sharpy upgrades their dependencies
 pandas
 more-itertools
 python-utils
-Theano
 aiohttp==3.6.2
 async-timeout==3.0.1
 attrs==19.1.0
@@ -39,10 +34,6 @@ opencv-contrib-python==4.1.1.26
 opencv-python
 imutils
 jinja2
-gym==0.10.5
-torch==1.1.0
-torchvision
-torch_optimizer
 sqlalchemy
 loguru
 scikit-image
